@@ -6,6 +6,11 @@ namespace ChestSystem.Chest
     public class ChestModel
     {
         #region --------- Private Variables ---------
+
+        private ChestController chestController;
+        #endregion ------------------
+
+        #region --------- Public Variables ---------
         public ChestTypes ChestTypes;
         public int MinCoinCount;
         public int MaxCoinCount;
@@ -14,9 +19,6 @@ namespace ChestSystem.Chest
         public Sprite ClosedChestSprite;
         public Sprite OpenChestSprite;
         public float TimerMins;
-        #endregion ------------------
-
-        #region --------- Public Variables ---------
         #endregion ------------------
         
         #region --------- Private Methods ---------
@@ -35,6 +37,9 @@ namespace ChestSystem.Chest
             this.OpenChestSprite = chestScriptableObject.OpenChestSprite;
             this.TimerMins = chestScriptableObject.TimerMins;
         }
+
+        public void SetController(ChestController chestController) => this.chestController = chestController;
+
         #endregion ------------------
     }
 }
