@@ -9,12 +9,10 @@ namespace ChestSystem.Utilities
         #endregion ------------------
 
         #region --------- Public Variables ---------
-
         public T Instance
         {
             get { return instance; }
         }
-
         #endregion ------------------
 
         #region --------- Monobehavior Methods ---------
