@@ -199,6 +199,57 @@ RectTransform:
   m_AnchoredPosition: {x: 287.86, y: -24.9}
   m_SizeDelta: {x: 185.73, y: 41.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &88454838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88454840}
+  - component: {fileID: 88454839}
+  m_Layer: 0
+  m_Name: GameService
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &88454839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88454838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54c36cb6bac45fea7df1019f13f6423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiService: {fileID: 1085636803}
+  chestPrefab: {fileID: -6509884377111006369, guid: 02ad9bddc30f60c40a031d4f28727290, type: 3}
+  chestsList:
+  - {fileID: 11400000, guid: e9b72c12505a2b3418a91413685063d4, type: 2}
+  - {fileID: 11400000, guid: e45b004f71b70f045b630b24fe70e835, type: 2}
+  - {fileID: 11400000, guid: 4c447951435bb5e4e87a7f0c9006f62c, type: 2}
+  - {fileID: 11400000, guid: d95a440d1416cf94b8e5b999235f2521, type: 2}
+--- !u!4 &88454840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88454838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111627921
 GameObject:
   m_ObjectHideFlags: 0
