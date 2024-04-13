@@ -1,7 +1,8 @@
 using ChestSystem.Chest;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace ScriptableObjects
+namespace ChestSystem.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "ChestScriptableObject", menuName = "ChestScriptableObjects")]
     public class ChestScriptableObject : ScriptableObject
@@ -13,6 +14,6 @@ namespace ScriptableObjects
         public int MaxGemCount;
         public Sprite ClosedChestSprite;
         public Sprite OpenChestSprite;
-        public float timerMins;
+        [FormerlySerializedAs("timerMins")] public float TimerMins;
     }
 }
