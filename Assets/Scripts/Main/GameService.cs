@@ -17,7 +17,7 @@ namespace ChestSystem.Main
         #endregion ------------------
 
         #region --------- Monobehavior Methods ---------
-        private void Awake()
+        protected override void Awake()
         {
             base.Awake();
             ChestService = new ChestService();
