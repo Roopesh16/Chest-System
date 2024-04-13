@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f295b813364d80ad3adf47d62c5109, type: 3}
+  m_Name: RareScriptableObject
+  m_EditorClassIdentifier: 
+  ChestTypes: 1
+  MinCoinCount: 300
+  MaxCoinCount: 500
+  MinGemCount: 20
+  MaxGemCount: 40
+  ClosedChestSprite: {fileID: 21300000, guid: d35ea3c57f40f664387a2eb5dc635b44, type: 3}
+  OpenChestSprite: {fileID: 21300000, guid: 5861144cc2bc4044d8c7215bb3838496, type: 3}
+  timerMins: 30
