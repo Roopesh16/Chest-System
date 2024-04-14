@@ -22,6 +22,7 @@ namespace ChestSystem.Chest
         private void InitializeView(ChestView chestPrefab, Transform parent,int siblingIndex)
         {
             chestView = Object.Instantiate(chestPrefab,parent);
+            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite);
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
         #endregion ------------------
