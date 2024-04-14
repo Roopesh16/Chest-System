@@ -22,4 +22,4 @@ MonoBehaviour:
   OpenChestSprite: {fileID: 21300000, guid: 684bbf251c0db034eada9e3abb7e00c0, type: 3}
   shakeDuration: 0.4
   shakeStrength: 0.4
-  TimerMins: 180
+  TimerSecs: 10800
