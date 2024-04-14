@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace ChestSystem.Chest
@@ -9,7 +10,7 @@ namespace ChestSystem.Chest
     {
         #region --------- Serialized Variables ---------
 
-        [SerializeField] private TextMeshProUGUI chestName;
+        [FormerlySerializedAs("chestName")] [SerializeField] private TextMeshProUGUI chestText;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private GameObject unlockingPanel;
@@ -35,6 +36,12 @@ namespace ChestSystem.Chest
         #region --------- Public Methods ---------
         
         public void SetController(ChestController chestController) => this.chestController = chestController;
+
+        public void SetupChestSlots(string chestName, Sprite chestSprite)
+        {
+            chestText.text = chestName;
+            chestImage.sprite = chestSprite;
+        }
 
         #endregion ------------------
     }
