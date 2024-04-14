@@ -21,7 +21,7 @@ namespace ChestSystem.Chest
         public Sprite OpenChestSprite { get; private set; }
         public float ShakeDuration { get; private set; }
         public float ShakeStrength { get; private set; }
-        public float TimerMins { get; private set; }
+        public int TimerSecs { get; private set; }
         #endregion ------------------
         
         #region --------- Private Methods ---------
@@ -41,7 +41,7 @@ namespace ChestSystem.Chest
             this.OpenChestSprite = chestScriptableObject.OpenChestSprite;
             this.ShakeDuration = chestScriptableObject.shakeDuration;
             this.ShakeStrength = chestScriptableObject.shakeStrength;
-            this.TimerMins = chestScriptableObject.TimerMins;
+            this.TimerSecs = chestScriptableObject.TimerSecs;
         }
 
         public void SetController(ChestController chestController) => this.chestController = chestController;
