@@ -11,14 +11,15 @@ namespace ChestSystem.Chest
         #endregion ------------------
 
         #region --------- Public Variables ---------
-        public ChestTypes ChestTypes;
-        public int MinCoinCount;
-        public int MaxCoinCount;
-        public int MinGemCount;
-        public int MaxGemCount;
-        public Sprite ClosedChestSprite;
-        public Sprite OpenChestSprite;
-        public float TimerMins;
+        public ChestTypes ChestTypes { get; private set; }
+        public string ChestName { get; private set; }
+        public int MinCoinCount { get; private set; }
+        public int MaxCoinCount { get; private set; }
+        public int MinGemCount { get; private set; }
+        public int MaxGemCount { get; private set; }
+        public Sprite ClosedChestSprite { get; private set; }
+        public Sprite OpenChestSprite { get; private set; }
+        public float TimerMins { get; private set; }
         #endregion ------------------
         
         #region --------- Private Methods ---------
@@ -29,6 +30,7 @@ namespace ChestSystem.Chest
         public ChestModel(ChestScriptableObject chestScriptableObject)
         {
             this.ChestTypes = chestScriptableObject.ChestTypes;
+            this.ChestName = chestScriptableObject.ChestName;
             this.MinCoinCount = chestScriptableObject.MinCoinCount;
             this.MaxCoinCount = chestScriptableObject.MaxCoinCount;
             this.MinGemCount = chestScriptableObject.MinGemCount;
