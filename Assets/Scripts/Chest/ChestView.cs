@@ -27,6 +27,9 @@ namespace ChestSystem.Chest
         #endregion ------------------
 
         #region --------- Monobehavior Methods ---------
+
+        private void Awake() => chestButton.onClick.AddListener(chestController.ShakeChestSprite);
+
         #endregion ------------------
 
         #region --------- Private Methods ---------
