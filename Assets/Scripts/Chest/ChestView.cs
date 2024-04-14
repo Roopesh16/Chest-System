@@ -1,8 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 namespace ChestSystem.Chest
 {
@@ -27,9 +26,6 @@ namespace ChestSystem.Chest
         #endregion ------------------
 
         #region --------- Monobehavior Methods ---------
-
-        private void Awake() => chestButton.onClick.AddListener(chestController.ShakeChestSprite);
-
         #endregion ------------------
 
         #region --------- Private Methods ---------
@@ -42,9 +38,12 @@ namespace ChestSystem.Chest
 
         public void SetupChestSlots(string chestName, Sprite chestSprite)
         {
+            chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestText.text = chestName;
             chestImage.sprite = chestSprite;
         }
+
+        public Image GetChestImage() => chestImage;
 
         #endregion ------------------
     }

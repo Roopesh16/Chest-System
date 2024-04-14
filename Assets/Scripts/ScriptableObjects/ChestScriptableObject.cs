@@ -1,5 +1,5 @@
-using ChestSystem.Chest;
 using UnityEngine;
+using ChestSystem.Chest;
 using UnityEngine.Serialization;
 
 namespace ChestSystem.ScriptableObjects

@@ -1,6 +1,6 @@
-using ChestSystem.Chest;
-using ChestSystem.ScriptableObjects;
 using UnityEngine;
+using ChestSystem.ScriptableObjects;
+using DG.Tweening;
 
 namespace ChestSystem.Chest
 {
@@ -34,6 +34,14 @@ namespace ChestSystem.Chest
             chestModel = new ChestModel(chestScriptableObject);
             InitializeView(chestPrefab,parent,siblingIndex);
         }
+
+        public void ShakeChestSprite()
+        {
+            Transform imgTransform = chestView.GetChestImage().transform;
+            imgTransform.DOShakePosition(chestModel.ShakeDuration,chestModel.ShakeStrength);
+            imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
+        }
+            
         #endregion ------------------
     }
 }

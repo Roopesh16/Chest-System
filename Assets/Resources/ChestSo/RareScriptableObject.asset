@@ -20,4 +20,6 @@ MonoBehaviour:
   MaxGemCount: 40
   ClosedChestSprite: {fileID: 21300000, guid: d35ea3c57f40f664387a2eb5dc635b44, type: 3}
   OpenChestSprite: {fileID: 21300000, guid: 5861144cc2bc4044d8c7215bb3838496, type: 3}
+  shakeDuration: 0.2
+  shakeStrength: 0.2
   TimerMins: 30
