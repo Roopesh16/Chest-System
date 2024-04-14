@@ -18,18 +18,11 @@ namespace ChestSystem.Chest
         #endregion ------------------
         
         #region --------- Private Methods ---------
-
-        private void InitializeModel(ChestScriptableObject chestScriptableObject)
-        {
-            chestModel = new ChestModel(chestScriptableObject);
-            chestModel.SetController(this);
-        }
         
         private void InitializeView(ChestView chestPrefab, Transform parent,int siblingIndex)
         {
             chestView = Object.Instantiate(chestPrefab,parent);
             chestView.transform.SetSiblingIndex(siblingIndex);
-            chestView.SetController(this);
         }
         #endregion ------------------
 
