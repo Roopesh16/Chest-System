@@ -1,7 +1,7 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using ChestSystem.ScriptableObjects;
-using DG.Tweening;
 
 namespace ChestSystem.Chest
 {
@@ -30,15 +30,16 @@ namespace ChestSystem.Chest
         {
             chestView = GameObject.Instantiate(chestPrefab,parent);
             chestView.SetController(this);
-            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite);
+            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite,chestModel.TimerSecs);
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
 
-        private void SetOpenImage()
+        private void SetOpenImage() => chestView.SetChestOpen(chestModel.OpenChestSprite);
+
+        public void SetTimerText(int timer)
         {
-            chestView.SetOpenChestImage(chestModel.OpenChestSprite);
-            TimeSpan timeSpan = TimeSpan.FromSeconds(chestModel.TimerSecs);
-            string time = string.Format("{0:D2}:{1:D2}:{2:D2}",timeSpan.Hours,timeSpan.Minutes,timeSpan.Seconds);
+            TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
+            string time = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
             chestView.SetUnlockTimer(time);
         }
         #endregion ------------------
