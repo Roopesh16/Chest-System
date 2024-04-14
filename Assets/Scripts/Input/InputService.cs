@@ -23,7 +23,7 @@ namespace ChestSystem.Input
 
         #region --------- Public Methods ---------
 
-        public bool CanSpawnChest() => currentOpenSlots <= TotalSlots;
+        public bool CanSpawnChest() => currentOpenSlots < TotalSlots;
 
         public void IncrementOpenChest() => currentOpenSlots++;
 
