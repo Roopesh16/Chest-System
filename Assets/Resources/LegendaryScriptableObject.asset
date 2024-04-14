@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: LegendaryScriptableObject
   m_EditorClassIdentifier: 
   ChestTypes: 3
+  ChestName: LEGENDARY
   MinCoinCount: 1000
   MaxCoinCount: 1200
   MinGemCount: 80
   MaxGemCount: 100
   ClosedChestSprite: {fileID: 21300000, guid: 4f1210cea38b2f441a87e9b75695a13d, type: 3}
   OpenChestSprite: {fileID: 21300000, guid: 684bbf251c0db034eada9e3abb7e00c0, type: 3}
-  timerMins: 180
+  TimerMins: 180

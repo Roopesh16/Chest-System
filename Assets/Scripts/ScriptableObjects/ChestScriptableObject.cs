@@ -8,6 +8,7 @@ namespace ChestSystem.ScriptableObjects
     public class ChestScriptableObject : ScriptableObject
     {
         public ChestTypes ChestTypes;
+        public string ChestName;
         public int MinCoinCount;
         public int MaxCoinCount;
         public int MinGemCount;

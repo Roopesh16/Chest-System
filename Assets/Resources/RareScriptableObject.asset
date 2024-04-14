@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: RareScriptableObject
   m_EditorClassIdentifier: 
   ChestTypes: 1
+  ChestName: RARE
   MinCoinCount: 300
   MaxCoinCount: 500
   MinGemCount: 20
   MaxGemCount: 40
   ClosedChestSprite: {fileID: 21300000, guid: d35ea3c57f40f664387a2eb5dc635b44, type: 3}
   OpenChestSprite: {fileID: 21300000, guid: 5861144cc2bc4044d8c7215bb3838496, type: 3}
-  timerMins: 30
+  TimerMins: 30

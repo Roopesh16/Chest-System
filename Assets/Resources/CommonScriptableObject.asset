@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: CommonScriptableObject
   m_EditorClassIdentifier: 
   ChestTypes: 0
+  ChestName: COMMON
   MinCoinCount: 100
   MaxCoinCount: 200
   MinGemCount: 10
   MaxGemCount: 20
   ClosedChestSprite: {fileID: 21300000, guid: 155e4b6a3e0270442bd6c15ffacccfbb, type: 3}
   OpenChestSprite: {fileID: 21300000, guid: 1407986fc6152d5498deaaec98b90cbb, type: 3}
-  timerMins: 15
+  TimerMins: 15
