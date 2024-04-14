@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +22,8 @@ namespace ChestSystem.Chest
         #region --------- Private Variables ---------
 
         private ChestController chestController;
+        private int timer;
+        private const float WaitTime = 1f;
         #endregion ------------------
 
         #region --------- Public Variables ---------
@@ -29,29 +33,40 @@ namespace ChestSystem.Chest
         #endregion ------------------
 
         #region --------- Private Methods ---------
-        
+
+        private IEnumerator StartTimer()
+        {
+            while (--timer >= 0)
+            {
+                chestController.SetTimerText(timer);
+                yield return new WaitForSecondsRealtime(WaitTime);
+            }
+        }
         #endregion ------------------
 
         #region --------- Public Methods ---------
         
         public void SetController(ChestController chestController) => this.chestController = chestController;
 
-        public void SetupChestSlots(string chestName, Sprite chestSprite)
+        public void SetupChestSlots(string chestName, Sprite chestSprite,int timer)
         {
             chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestText.text = chestName;
             chestImage.sprite = chestSprite;
+            this.timer = timer;
         }
 
         public Image GetChestImage() => chestImage;
-        public void SetOpenChestImage(Sprite openChestSprite) => chestImage.sprite = openChestSprite;
 
-        public void SetUnlockTimer(string time)
+        public void SetChestOpen(Sprite openChestSprite)
         {
-            timerText.text = time;
+            chestImage.sprite = openChestSprite;
             unlockingPanel.SetActive(true);
             statusText.gameObject.SetActive(false);
+            StartCoroutine(StartTimer());
         }
+
+        public void SetUnlockTimer(string time) => timerText.text = time;
 
         #endregion ------------------
     }
