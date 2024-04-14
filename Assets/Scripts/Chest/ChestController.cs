@@ -25,19 +25,20 @@ namespace ChestSystem.Chest
             chestModel.SetController(this);
         }
         
-        private void InitializeView(ChestView chestPrefab, Transform parent)
+        private void InitializeView(ChestView chestPrefab, Transform parent,int siblingIndex)
         {
             chestView = Object.Instantiate(chestPrefab,parent);
+            chestView.transform.SetSiblingIndex(siblingIndex);
             chestView.SetController(this);
         }
         #endregion ------------------
 
         #region --------- Public Methods ---------
 
-        public void Init(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent)
+        public void Init(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex)
         {
             InitializeModel(chestScriptableObject);
-            InitializeView(chestPrefab,parent);
+            InitializeView(chestPrefab,parent,siblingIndex);
         }
         #endregion ------------------
     }
