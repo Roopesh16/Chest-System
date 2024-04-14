@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ChestSystem.Chest;
+using ChestSystem.Input;
 using ChestSystem.UI;
 using ChestSystem.Utilities;
 using ChestSystem.ScriptableObjects;
@@ -21,6 +22,7 @@ namespace ChestSystem.Main
         
         #region --------- Public Variables ---------
         public ChestService ChestService { get; private set; }
+        public InputService InputService { get; private set; }
         public UIService UIService => uiService;
         #endregion ------------------
 
@@ -29,6 +31,7 @@ namespace ChestSystem.Main
         {
             base.Awake();
             ChestService = new ChestService(chestsList,chestPrefab);
+            InputService = new InputService();
         }
         #endregion ------------------
     }
