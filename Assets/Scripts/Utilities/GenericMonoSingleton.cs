@@ -9,7 +9,7 @@ namespace ChestSystem.Utilities
         #endregion ------------------
 
         #region --------- Public Variables ---------
-        public T Instance
+        public static T Instance
         {
             get { return instance; }
         }
