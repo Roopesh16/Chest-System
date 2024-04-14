@@ -10,7 +10,7 @@ namespace ChestSystem.Chest
         #region --------- Private Variables ---------
         private List<ChestScriptableObject> chestsList = new();
         private Dictionary<ChestTypes, ChestController> chestDict = new();
-        private ChestView chestView;
+        private ChestView chestPrefab;
         #endregion ------------------
 
         #region --------- Public Variables ---------
@@ -29,17 +29,18 @@ namespace ChestSystem.Chest
 
         #region --------- Public Methods ---------
 
-        public ChestService(List<ChestScriptableObject> chestsList,ChestView chestView)
+        public ChestService(List<ChestScriptableObject> chestsList,ChestView chestPrefab)
         {
             CreateChestControllers();
             this.chestsList = chestsList;
-            this.chestView = chestView;
+            this.chestPrefab = chestPrefab;
         }
 
-        public void SpawnRandomChest()
+        public void SpawnRandomChest(Transform parent)
         {
             int index = Random.Range(0, chestsList.Count);
             ChestController spawnChest = chestDict[chestsList[index].ChestTypes];
+            spawnChest.Init(chestsList[index],chestPrefab,parent);
         }
         #endregion ------------------
     }
