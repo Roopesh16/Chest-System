@@ -44,6 +44,14 @@ namespace ChestSystem.Chest
         }
 
         public Image GetChestImage() => chestImage;
+        public void SetOpenChestImage(Sprite openChestSprite) => chestImage.sprite = openChestSprite;
+
+        public void SetUnlockTimer(string time)
+        {
+            timerText.text = time;
+            unlockingPanel.SetActive(true);
+            statusText.gameObject.SetActive(false);
+        }
 
         #endregion ------------------
     }
