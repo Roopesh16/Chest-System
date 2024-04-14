@@ -19,6 +19,8 @@ namespace ChestSystem.Chest
         public int MaxGemCount { get; private set; }
         public Sprite ClosedChestSprite { get; private set; }
         public Sprite OpenChestSprite { get; private set; }
+        public float ShakeDuration { get; private set; }
+        public float ShakeStrength { get; private set; }
         public float TimerMins { get; private set; }
         #endregion ------------------
         
@@ -37,6 +39,8 @@ namespace ChestSystem.Chest
             this.MaxGemCount = chestScriptableObject.MaxGemCount;
             this.ClosedChestSprite = chestScriptableObject.ClosedChestSprite;
             this.OpenChestSprite = chestScriptableObject.OpenChestSprite;
+            this.ShakeDuration = chestScriptableObject.shakeDuration;
+            this.ShakeStrength = chestScriptableObject.shakeStrength;
             this.TimerMins = chestScriptableObject.TimerMins;
         }
 

@@ -15,6 +15,8 @@ namespace ChestSystem.ScriptableObjects
         public int MaxGemCount;
         public Sprite ClosedChestSprite;
         public Sprite OpenChestSprite;
+        [Range(0.1f, 1f)] public float shakeDuration;
+        [Range(0.1f, 0.5f)] public float shakeStrength;
         [FormerlySerializedAs("timerMins")] public float TimerMins;
     }
 }
