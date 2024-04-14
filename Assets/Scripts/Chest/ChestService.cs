@@ -36,11 +36,11 @@ namespace ChestSystem.Chest
             this.chestPrefab = chestPrefab;
         }
 
-        public void SpawnRandomChest(Transform parent)
+        public void SpawnRandomChest(Transform parent,int siblingIndex)
         {
             int index = Random.Range(0, chestsList.Count);
             ChestController spawnChest = chestDict[chestsList[index].ChestTypes];
-            spawnChest.Init(chestsList[index],chestPrefab,parent);
+            spawnChest.Init(chestsList[index],chestPrefab,parent,siblingIndex);
         }
         #endregion ------------------
     }
