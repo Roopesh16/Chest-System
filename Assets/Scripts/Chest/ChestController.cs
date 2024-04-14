@@ -37,7 +37,7 @@ namespace ChestSystem.Chest
 
         public void Init(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex)
         {
-            InitializeModel(chestScriptableObject);
+            chestModel = new ChestModel(chestScriptableObject);
             InitializeView(chestPrefab,parent,siblingIndex);
         }
         #endregion ------------------
