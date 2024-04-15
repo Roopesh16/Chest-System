@@ -1423,6 +1423,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateButton: {fileID: 1358207965}
   chestSlots: {fileID: 1452328363}
+  gemText: {fileID: 1914919824}
+  coinText: {fileID: 280021600}
 --- !u!1 &1145853003
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using ChestSystem.Chest;
 using ChestSystem.Input;
 using ChestSystem.Main;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ namespace ChestSystem.UI
 
         [SerializeField] private Button generateButton;
         [SerializeField] private Transform chestSlots;
+        [SerializeField] private TextMeshProUGUI gemText;
+        [SerializeField] private TextMeshProUGUI coinText;
 
         #endregion ------------------
 
@@ -55,6 +58,12 @@ namespace ChestSystem.UI
         {
             childIndex += 2;
             siblingIndex += 2;
+        }
+
+        public void SetGemCoinCount(int gemCount, int coinCount)
+        {
+            gemText.text = gemCount.ToString();
+            coinText.text = coinCount.ToString();
         }
         #endregion ------------------
 
