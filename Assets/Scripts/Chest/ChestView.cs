@@ -105,8 +105,6 @@ namespace ChestSystem.Chest
         }
 
         public void SetUnlockTimer(string time) => timerText.text = time;
-        
-
         #endregion ------------------
     }
 }
