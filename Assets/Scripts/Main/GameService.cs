@@ -1,10 +1,11 @@
-using System.Collections.Generic;
-using ChestSystem.Chest;
-using ChestSystem.Input;
-using ChestSystem.UI;
-using ChestSystem.Utilities;
-using ChestSystem.ScriptableObjects;
 using UnityEngine;
+using ChestSystem.UI;
+using ChestSystem.Input;
+using ChestSystem.Chest;
+using ChestSystem.Utilities;
+using ChestSystem.Transaction;
+using System.Collections.Generic;
+using ChestSystem.ScriptableObjects;
 
 namespace ChestSystem.Main
 {
@@ -23,6 +24,7 @@ namespace ChestSystem.Main
         #region --------- Public Variables ---------
         public ChestService ChestService { get; private set; }
         public InputService InputService { get; private set; }
+        public TransactionService TransactionService { get; private set; }
         public UIService UIService => uiService;
         #endregion ------------------
 
@@ -32,6 +34,7 @@ namespace ChestSystem.Main
             base.Awake();
             ChestService = new ChestService(chestsList,chestPrefab);
             InputService = new InputService();
+            TransactionService = new TransactionService();
         }
         #endregion ------------------
     }
