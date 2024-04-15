@@ -34,6 +34,12 @@ namespace ChestSystem.Chest
 
         #region --------- Private Methods ---------
 
+        private void SubscribeToEvents()
+        {
+            chestButton.onClick.AddListener(chestController.ShakeChestSprite);
+            chestButton.onClick.AddListener(EnableOptionPanel);
+        }
+
         private IEnumerator StartTimer()
         {
             while (--timer >= 0)
