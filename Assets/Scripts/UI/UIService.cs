@@ -37,14 +37,14 @@ namespace ChestSystem.UI
 
         private void Awake()
         {
-            generateButton.onClick.AddListener(SpawnChest);
+            generateButton.onClick.AddListener(OnGenerateClick);
         }
 
         #endregion ------------------
 
         #region --------- Private Methods ---------
 
-        private void SpawnChest()
+        private void OnGenerateClick()
         {
             if (!InputService.CanSpawnChest()) return;
             
