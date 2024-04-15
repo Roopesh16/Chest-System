@@ -61,7 +61,7 @@ namespace ChestSystem.Chest
             imgTransform.DOShakePosition(chestModel.ShakeDuration,chestModel.ShakeStrength);
             imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
 
-            SetOpenImage();
+            // SetOpenImage();  -> Change this through events
         }
         #endregion ------------------
     }
