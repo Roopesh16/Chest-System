@@ -17,9 +17,13 @@ namespace ChestSystem.Chest
         [SerializeField] private GameObject unlockingPanel;
         [SerializeField] private Image chestImage;
         [SerializeField] private Button chestButton;
-        [FormerlySerializedAs("OptionPanel")] [SerializeField] private GameObject optionPanel;
+        
+        [Header("Option Panel")]
+        [SerializeField] private GameObject optionPanel;
         [SerializeField] private TextMeshProUGUI timerBtnText;
         [SerializeField] private TextMeshProUGUI gemsBtnText;
+        [SerializeField] private Button timerButton;
+        [SerializeField] private Button gemsButton;
         #endregion ------------------
 
         #region --------- Private Variables ---------
