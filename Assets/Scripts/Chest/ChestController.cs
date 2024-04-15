@@ -1,6 +1,9 @@
 using System;
 using DG.Tweening;
 using UnityEngine;
+using ChestSystem.UI;
+using ChestSystem.Main;
+using ChestSystem.Transaction;
 using ChestSystem.ScriptableObjects;
 
 namespace ChestSystem.Chest
@@ -8,6 +11,13 @@ namespace ChestSystem.Chest
     public class ChestController
     {
         #region --------- Private Variables ---------
+
+        private TransactionService TransactionService => GameService.Instance.TransactionService;
+        private UIService UIService => GameService.Instance.UIService;
+        
+        private const int HourSeconds = 3600;
+        private int gemCount;
+        
         #endregion ------------------
         
         #region --------- Protected Variables ---------
@@ -30,11 +40,10 @@ namespace ChestSystem.Chest
         {
             chestView = GameObject.Instantiate(chestPrefab,parent);
             chestView.SetController(this);
-            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite,chestModel.TimerSecs);
+            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite,chestModel.TimerSecs,
+                GetTimerText(chestModel.TimerSecs),GetGemText(chestModel.TimerSecs));
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
-
-        private void SetOpenImage() => chestView.SetChestOpen(chestModel.OpenChestSprite);
 
         public void SetTimerText(int timer)
         {
@@ -60,8 +69,39 @@ namespace ChestSystem.Chest
             Transform imgTransform = chestView.GetChestImage().transform;
             imgTransform.DOShakePosition(chestModel.ShakeDuration,chestModel.ShakeStrength);
             imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
+        }
 
-            // SetOpenImage();  -> Change this through events
+        private string GetGemText(int timer)
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(timer);
+            gemCount = Mathf.CeilToInt((ts.Hours * 60 + ts.Minutes) * 0.1f);
+            return gemCount.ToString();
+        }
+
+        private string GetTimerText(int timer)
+        {
+            string text;
+            TimeSpan ts = TimeSpan.FromSeconds(timer);
+            if (timer >= HourSeconds)
+            {
+                text = ts.Hours + (ts.Hours == 1 ? " Hr" : " Hrs");
+            }
+            else
+            {
+                text = ts.Minutes + (ts.Minutes == 1 ? " Min" : " Mins");
+            }
+
+            return text;
+        }
+
+        public void OpenChest()
+        {
+            if (TransactionService.IsValidTransaction(gemCount))
+            {
+                
+            }
+            else
+                UIService.DisplayInvalidText();
         }
         #endregion ------------------
     }

@@ -31,7 +31,7 @@ namespace ChestSystem.Chest
         private ChestController chestController;
         private int timer;
         private const float WaitTime = 1f;
-        private const int HourSeconds = 3600;
+        
         #endregion ------------------
 
         #region --------- Public Variables ---------
@@ -48,6 +48,7 @@ namespace ChestSystem.Chest
             chestButton.onClick.AddListener(EnableOptionPanel);
             
             timerButton.onClick.AddListener(StartChestUnlocking);
+            gemsButton.onClick.AddListener(chestController.OpenChest);
             
             timerButton.onClick.AddListener(DisableOptionPanel);
             gemsButton.onClick.AddListener(DisableOptionPanel);
@@ -77,22 +78,14 @@ namespace ChestSystem.Chest
         
         public void SetController(ChestController chestController) => this.chestController = chestController;
         
-        public void SetupChestSlots(string chestName, Sprite chestSprite,int timer)
+        public void SetupChestSlots(string chestName, Sprite chestSprite,int timer,string timerText, string gemText)
         {
             SubscribeToEvents();
             chestText.text = chestName;
             chestImage.sprite = chestSprite;
             this.timer = timer;
-
-            TimeSpan ts = TimeSpan.FromSeconds(timer);
-            if (timer >= HourSeconds)
-            {
-                timerBtnText.text = ts.Hours + (ts.Hours == 1 ? " Hr" : " Hrs");
-            }
-            else
-            {
-                timerBtnText.text = ts.Minutes + (ts.Minutes == 1 ? " Min" : " Mins");
-            }
+            timerBtnText.text = timerText;
+            gemsBtnText.text = gemText;
         }
 
         public Image GetChestImage() => chestImage;
