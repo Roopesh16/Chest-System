@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f295b813364d80ad3adf47d62c5109, type: 3}
+  m_Name: CommonScriptableObject
+  m_EditorClassIdentifier: 
+  ChestTypes: 0
+  ChestName: COMMON
+  MinCoinCount: 100
+  MaxCoinCount: 200
+  MinGemCount: 10
+  MaxGemCount: 20
+  ClosedChestSprite: {fileID: 21300000, guid: 155e4b6a3e0270442bd6c15ffacccfbb, type: 3}
+  OpenChestSprite: {fileID: 21300000, guid: 1407986fc6152d5498deaaec98b90cbb, type: 3}
+  shakeDuration: 0.1
+  shakeStrength: 0.1
+  TimerSecs: 900
