@@ -17,6 +17,9 @@ namespace ChestSystem.Chest
         [SerializeField] private GameObject unlockingPanel;
         [SerializeField] private Image chestImage;
         [SerializeField] private Button chestButton;
+        [FormerlySerializedAs("OptionPanel")] [SerializeField] private GameObject optionPanel;
+        [SerializeField] private TextMeshProUGUI timerBtnText;
+        [SerializeField] private TextMeshProUGUI gemsBtnText;
         #endregion ------------------
 
         #region --------- Private Variables ---------
@@ -91,6 +94,7 @@ namespace ChestSystem.Chest
         }
 
         public void SetUnlockTimer(string time) => timerText.text = time;
+        
 
         #endregion ------------------
     }
