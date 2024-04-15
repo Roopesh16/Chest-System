@@ -24,6 +24,7 @@ namespace ChestSystem.Chest
         private ChestController chestController;
         private int timer;
         private const float WaitTime = 1f;
+        private const int HourSeconds = 3600;
         #endregion ------------------
 
         #region --------- Public Variables ---------
@@ -60,13 +61,23 @@ namespace ChestSystem.Chest
         #region --------- Public Methods ---------
         
         public void SetController(ChestController chestController) => this.chestController = chestController;
-
+        
         public void SetupChestSlots(string chestName, Sprite chestSprite,int timer)
         {
-            chestButton.onClick.AddListener(chestController.ShakeChestSprite);
+            SubscribeToEvents();
             chestText.text = chestName;
             chestImage.sprite = chestSprite;
             this.timer = timer;
+
+            TimeSpan ts = TimeSpan.FromSeconds(timer);
+            if (timer >= HourSeconds)
+            {
+                timerBtnText.text = ts.Hours + (ts.Hours == 1 ? " Hr" : " Hrs");
+            }
+            else
+            {
+                timerBtnText.text = ts.Minutes + (ts.Minutes == 1 ? " Min" : " Mins");
+            }
         }
 
         public Image GetChestImage() => chestImage;
