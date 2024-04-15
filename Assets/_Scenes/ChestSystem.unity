@@ -397,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126561168}
   m_Layer: 5
-  m_Name: InvalidTransaction
+  m_Name: InvalidPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1464,6 +1464,7 @@ MonoBehaviour:
   chestSlots: {fileID: 1452328363}
   gemText: {fileID: 1914919824}
   coinText: {fileID: 280021600}
+  invalidPanel: {fileID: 126561167}
 --- !u!1 &1145853003
 GameObject:
   m_ObjectHideFlags: 0
