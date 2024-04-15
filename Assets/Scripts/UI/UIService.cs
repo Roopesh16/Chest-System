@@ -1,10 +1,10 @@
-using ChestSystem.Chest;
-using ChestSystem.Input;
-using ChestSystem.Main;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using ChestSystem.Main;
+using ChestSystem.Chest;
+using ChestSystem.Input;
+using System.Collections;
 
 namespace ChestSystem.UI
 {
@@ -16,7 +16,7 @@ namespace ChestSystem.UI
         [SerializeField] private Transform chestSlots;
         [SerializeField] private TextMeshProUGUI gemText;
         [SerializeField] private TextMeshProUGUI coinText;
-
+        [SerializeField] private GameObject invalidPanel;
         #endregion ------------------
 
         #region --------- Private Variables ---------
@@ -38,6 +38,13 @@ namespace ChestSystem.UI
         private void Awake()
         {
             generateButton.onClick.AddListener(OnGenerateClick);
+        }
+
+        private IEnumerator InvalidPanelTimer()
+        {
+            invalidPanel.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            invalidPanel.SetActive(false);
         }
 
         #endregion ------------------
@@ -64,6 +71,11 @@ namespace ChestSystem.UI
         {
             gemText.text = gemCount.ToString();
             coinText.text = coinCount.ToString();
+        }
+
+        public void DisplayInvalidText()
+        {
+            StartCoroutine(InvalidPanelTimer());
         }
         #endregion ------------------
 
