@@ -5,6 +5,7 @@ using ChestSystem.Main;
 using ChestSystem.Chest;
 using ChestSystem.Input;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace ChestSystem.UI
 {
@@ -17,6 +18,7 @@ namespace ChestSystem.UI
         [SerializeField] private TextMeshProUGUI gemText;
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private GameObject invalidPanel;
+        [SerializeField] private List<GameObject> emptySlotList = new();
         #endregion ------------------
 
         #region --------- Private Variables ---------
@@ -74,6 +76,8 @@ namespace ChestSystem.UI
         }
 
         public void DisplayInvalidText() => StartCoroutine(InvalidPanelTimer());
+        public void EnableEmptySlot(int index) => emptySlotList[index].SetActive(true);
+
         #endregion ------------------
 
         #region --------- Public Methods ---------
