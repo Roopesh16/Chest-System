@@ -73,10 +73,7 @@ namespace ChestSystem.UI
             coinText.text = coinCount.ToString();
         }
 
-        public void DisplayInvalidText()
-        {
-            StartCoroutine(InvalidPanelTimer());
-        }
+        public void DisplayInvalidText() => StartCoroutine(InvalidPanelTimer());
         #endregion ------------------
 
         #region --------- Public Methods ---------
