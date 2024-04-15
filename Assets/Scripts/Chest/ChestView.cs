@@ -48,6 +48,13 @@ namespace ChestSystem.Chest
                 yield return new WaitForSecondsRealtime(WaitTime);
             }
         }
+
+        private void EnableOptionPanel()
+        {
+            if(optionPanel.activeSelf)
+                return;
+            optionPanel.SetActive(true);
+        } 
         #endregion ------------------
 
         #region --------- Public Methods ---------
