@@ -40,6 +40,7 @@ namespace ChestSystem.Chest
 
         private void SubscribeToEvents()
         {
+            chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestButton.onClick.AddListener(EnableOptionPanel);
         }
 
