@@ -46,6 +46,11 @@ namespace ChestSystem.Chest
         {
             chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestButton.onClick.AddListener(EnableOptionPanel);
+            
+            timerButton.onClick.AddListener(StartChestUnlocking);
+            
+            timerButton.onClick.AddListener(DisableOptionPanel);
+            gemsButton.onClick.AddListener(DisableOptionPanel);
         }
 
         private IEnumerator StartTimer()
@@ -62,7 +67,10 @@ namespace ChestSystem.Chest
             if(optionPanel.activeSelf)
                 return;
             optionPanel.SetActive(true);
-        } 
+        }
+
+        private void DisableOptionPanel() => optionPanel.SetActive(false);
+        
         #endregion ------------------
 
         #region --------- Public Methods ---------
@@ -89,9 +97,8 @@ namespace ChestSystem.Chest
 
         public Image GetChestImage() => chestImage;
 
-        public void SetChestOpen(Sprite openChestSprite)
+        public void StartChestUnlocking()
         {
-            chestImage.sprite = openChestSprite;
             unlockingPanel.SetActive(true);
             statusText.gameObject.SetActive(false);
             StartCoroutine(StartTimer());
