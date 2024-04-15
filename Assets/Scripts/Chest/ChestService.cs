@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using ChestSystem.Main;
 using ChestSystem.ScriptableObjects;
+using ChestSystem.UI;
 using UnityEngine;
 
 namespace ChestSystem.Chest
@@ -16,6 +18,8 @@ namespace ChestSystem.Chest
         #endregion ------------------
         
         #region --------- Private Methods ---------
+
+        private UIService UIService => GameService.Instance.UIService;
         #endregion ------------------
 
         #region --------- Public Methods ---------
@@ -29,8 +33,14 @@ namespace ChestSystem.Chest
         public void SpawnRandomChest(Transform parent,int siblingIndex)
         {
             int index = Random.Range(0, chestsList.Count);
-            ChestController spawnChest = new ChestController(chestsList[index],chestPrefab,parent,siblingIndex);
+            ChestController spawnChest = new ChestController(chestsList[index],chestPrefab,parent,siblingIndex,spawnedChests.Count);
             spawnedChests.Add(spawnChest);
+        }
+
+        public void RemoveChestSlot(int index)
+        {
+            spawnedChests.Remove(spawnedChests[index]); 
+            UIService.EnableEmptySlot(index);
         }
         #endregion ------------------
     }
