@@ -1,5 +1,6 @@
 using ChestSystem.Main;
 using ChestSystem.UI;
+using Unity.VisualScripting;
 
 namespace ChestSystem.Transaction
 {
@@ -30,9 +31,16 @@ namespace ChestSystem.Transaction
 
         public bool IsValidTransaction(int chestGem) => chestGem <= currentGemCount;
 
-        public void DeductGems(int gemCount) => currentGemCount -= gemCount;
-
-
+        public void DeductGems(int gemCount)
+        {
+            if (currentGemCount <= 0)
+            {
+                currentGemCount = 0;
+                return;
+            }
+            
+            currentGemCount -= gemCount;
+        }
         #endregion ------------------
 
 
