@@ -41,6 +41,12 @@ namespace ChestSystem.Transaction
             
             currentGemCount -= gemCount;
         }
+
+        public void AddCoinGemCount(int gemCount, int coinCount)
+        {
+            currentGemCount += gemCount;
+            currentCoinCount += coinCount;
+        }
         #endregion ------------------
 
 
