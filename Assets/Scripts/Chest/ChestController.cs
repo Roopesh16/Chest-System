@@ -5,6 +5,7 @@ using ChestSystem.UI;
 using ChestSystem.Main;
 using ChestSystem.Transaction;
 using ChestSystem.ScriptableObjects;
+using Random = UnityEngine.Random;
 
 namespace ChestSystem.Chest
 {
@@ -17,7 +18,7 @@ namespace ChestSystem.Chest
         
         private const int HourSeconds = 3600;
         private int gemCount;
-        
+        private int index;
         #endregion ------------------
         
         #region --------- Protected Variables ---------
@@ -58,8 +59,9 @@ namespace ChestSystem.Chest
 
         #region --------- Public Methods ---------
 
-        public ChestController(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex)
+        public ChestController(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex,int index)
         {
+            this.index = index;
             InitializeModel(chestScriptableObject);
             InitializeView(chestPrefab,parent,siblingIndex);
         }
@@ -100,6 +102,16 @@ namespace ChestSystem.Chest
                 TransactionService.DeductGems(gemCount);
             else
                 UIService.DisplayInvalidText();
+        }
+
+        public void OnChestComplete()
+        {
+            int randGem = Random.Range(chestModel.MinGemCount, chestModel.MaxGemCount);
+            int randCoin = Random.Range(chestModel.MinCoinCount, chestModel.MaxCoinCount);
+            
+            TransactionService.AddCoinGemCount(randGem,randCoin);
+            GameObject.Destroy(chestView);
+            
         }
         #endregion ------------------
     }
