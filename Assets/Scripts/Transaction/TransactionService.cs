@@ -30,6 +30,8 @@ namespace ChestSystem.Transaction
 
         public bool IsValidTransaction(int chestGem) => chestGem <= currentGemCount;
 
+        public void DeductGems(int gemCount) => currentGemCount -= gemCount;
+
 
         #endregion ------------------
 

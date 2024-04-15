@@ -97,9 +97,7 @@ namespace ChestSystem.Chest
         public void OpenChest()
         {
             if (TransactionService.IsValidTransaction(gemCount))
-            {
-                
-            }
+                TransactionService.DeductGems(gemCount);
             else
                 UIService.DisplayInvalidText();
         }
