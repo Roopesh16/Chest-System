@@ -46,10 +46,10 @@ namespace ChestSystem.Chest
         {
             chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestButton.onClick.AddListener(EnableOptionPanel);
-            
-            timerButton.onClick.AddListener(StartChestUnlocking);
-            gemsButton.onClick.AddListener(chestController.OpenChest);
-            
+
+            timerButton.onClick.AddListener(chestController.SetUnlockingState);
+            gemsButton.onClick.AddListener(chestController.OpenChestByGems);
+
             timerButton.onClick.AddListener(DisableOptionPanel);
             gemsButton.onClick.AddListener(DisableOptionPanel);
         }
