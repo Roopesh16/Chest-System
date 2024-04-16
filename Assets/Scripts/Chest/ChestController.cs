@@ -104,12 +104,12 @@ namespace ChestSystem.Chest
             return text;
         }
 
-        public void OpenChest()
+        public void OpenChestByGems()
         {
             if (TransactionService.IsValidTransaction(gemCount))
             {
                 TransactionService.DeductGems(gemCount);
-                OnChestComplete();
+                SetUnlockedState();
             }
             else
                 UIService.DisplayInvalidText();
