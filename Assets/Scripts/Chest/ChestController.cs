@@ -4,8 +4,9 @@ using UnityEngine;
 using ChestSystem.UI;
 using ChestSystem.Main;
 using ChestSystem.Transaction;
-using ChestSystem.ScriptableObjects;
+using ChestSystem.Chest.States;
 using Random = UnityEngine.Random;
+using ChestSystem.ScriptableObjects;
 
 namespace ChestSystem.Chest
 {
@@ -20,68 +21,66 @@ namespace ChestSystem.Chest
         private const int HourSeconds = 3600;
         private int gemCount;
         private int index;
+
+        private ChestStateMachine stateMachine;
         #endregion ------------------
-        
+
         #region --------- Protected Variables ---------
         protected ChestView chestView;
         protected ChestModel chestModel;
         #endregion ------------------
 
         #region --------- Public Variables ---------
+        public ChestView View => chestView;
+        public ChestModel Model => chestModel;
         #endregion ------------------
-        
+
         #region --------- Private Methods ---------
+
+        private void CreateStateMachine() => stateMachine = new ChestStateMachine(this);
 
         private void InitializeModel(ChestScriptableObject chestScriptableObject)
         {
             chestModel = new ChestModel(chestScriptableObject);
             chestModel.SetController(this);
         }
-        
-        private void InitializeView(ChestView chestPrefab, Transform parent,int siblingIndex)
+
+        private void InitializeView(ChestView chestPrefab, Transform parent, int siblingIndex)
         {
-            chestView = GameObject.Instantiate(chestPrefab,parent);
+            chestView = GameObject.Instantiate(chestPrefab, parent);
             chestView.SetController(this);
-            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite,chestModel.TimerSecs,
-                GetTimerText(chestModel.TimerSecs),GetGemText(chestModel.TimerSecs));
+            chestView.SetupChestSlots(chestModel.ChestName, chestModel.ClosedChestSprite, chestModel.TimerSecs,
+                GetTimerBtnText(chestModel.TimerSecs), GetGemBtnText(chestModel.TimerSecs));
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
-
-        public void SetTimerText(int timer)
-        {
-            TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
-            string time = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
-            chestView.SetUnlockTimer(time);
-        }
-        #endregion ------------------
-        
-        #region --------- Protected Methods ---------
         #endregion ------------------
 
         #region --------- Public Methods ---------
 
-        public ChestController(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex,int index)
+        public ChestController(ChestScriptableObject chestScriptableObject, ChestView chestPrefab, Transform parent, int siblingIndex, int index)
         {
             this.index = index;
+            CreateStateMachine();
             InitializeModel(chestScriptableObject);
-            InitializeView(chestPrefab,parent,siblingIndex);
+            InitializeView(chestPrefab, parent, siblingIndex);
+            stateMachine.ChangeState(ChestStates.LOCKED);
         }
-        
+
         public void ShakeChestSprite()
         {
             Transform imgTransform = chestView.GetChestImage().transform;
-            imgTransform.DOShakePosition(chestModel.ShakeDuration,chestModel.ShakeStrength);
+            imgTransform.DOShakePosition(chestModel.ShakeDuration, chestModel.ShakeStrength);
             imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
         }
 
-        private string GetGemText(int timer)
+        private string GetGemBtnText(int timer)
         {
             TimeSpan ts = TimeSpan.FromSeconds(timer);
             gemCount = Mathf.CeilToInt((ts.Hours * 60 + ts.Minutes) * 0.1f);
             return gemCount.ToString();
         }
 
-        private string GetTimerText(int timer)
+        private string GetTimerBtnText(int timer)
         {
             string text;
             TimeSpan ts = TimeSpan.FromSeconds(timer);
@@ -97,12 +96,12 @@ namespace ChestSystem.Chest
             return text;
         }
 
-        public void OpenChest()
+        public void OpenChestByGems()
         {
             if (TransactionService.IsValidTransaction(gemCount))
             {
                 TransactionService.DeductGems(gemCount);
-                OnChestComplete();
+                SetUnlockedState();
             }
             else
                 UIService.DisplayInvalidText();
@@ -112,12 +111,22 @@ namespace ChestSystem.Chest
         {
             int randGem = Random.Range(chestModel.MinGemCount, chestModel.MaxGemCount);
             int randCoin = Random.Range(chestModel.MinCoinCount, chestModel.MaxCoinCount);
-            
-            ChestService.RemoveChestSlot(this,index);
-            TransactionService.AddCoinGemCount(randGem,randCoin);
+
+            ChestService.RemoveChestSlot(this, index);
+            TransactionService.AddCoinGemCount(randGem, randCoin);
             GameObject.Destroy(chestView.gameObject);
-            
         }
+
+        public void SetTimerText(int timer)
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
+            string time = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            chestView.SetUnlockTimer(time);
+        }
+
+        public void SetUnlockingState() => stateMachine.ChangeState(ChestStates.UNLOCKING);
+
+        public void SetUnlockedState() => stateMachine.ChangeState(ChestStates.UNLOCKED);
         #endregion ------------------
     }
 }

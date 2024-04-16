@@ -11,13 +11,13 @@ namespace ChestSystem.Chest
     {
         #region --------- Serialized Variables ---------
 
-        [FormerlySerializedAs("chestName")] [SerializeField] private TextMeshProUGUI chestText;
+        [FormerlySerializedAs("chestName")][SerializeField] private TextMeshProUGUI chestText;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private GameObject unlockingPanel;
         [SerializeField] private Image chestImage;
         [SerializeField] private Button chestButton;
-        
+
         [Header("Option Panel")]
         [SerializeField] private GameObject optionPanel;
         [SerializeField] private TextMeshProUGUI timerBtnText;
@@ -31,7 +31,7 @@ namespace ChestSystem.Chest
         private ChestController chestController;
         private int timer;
         private const float WaitTime = 1f;
-        
+
         #endregion ------------------
 
         #region --------- Public Variables ---------
@@ -46,10 +46,10 @@ namespace ChestSystem.Chest
         {
             chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestButton.onClick.AddListener(EnableOptionPanel);
-            
-            timerButton.onClick.AddListener(StartChestUnlocking);
-            gemsButton.onClick.AddListener(chestController.OpenChest);
-            
+
+            timerButton.onClick.AddListener(chestController.SetUnlockingState);
+            gemsButton.onClick.AddListener(chestController.OpenChestByGems);
+
             timerButton.onClick.AddListener(DisableOptionPanel);
             gemsButton.onClick.AddListener(DisableOptionPanel);
         }
@@ -61,32 +61,26 @@ namespace ChestSystem.Chest
                 chestController.SetTimerText(timer);
                 yield return new WaitForSecondsRealtime(WaitTime);
             }
-            
-        }
 
-        private void OnTimerComplete()
-        {
-            chestButton.onClick.RemoveAllListeners();
-            statusText.text = "COMPLETED";
-            chestButton.onClick.AddListener(chestController.OnChestComplete);
+            chestController.SetUnlockedState();
         }
 
         private void EnableOptionPanel()
         {
-            if(optionPanel.activeSelf)
+            if (optionPanel.activeSelf)
                 return;
             optionPanel.SetActive(true);
         }
 
         private void DisableOptionPanel() => optionPanel.SetActive(false);
-        
+
         #endregion ------------------
 
         #region --------- Public Methods ---------
-        
+
         public void SetController(ChestController chestController) => this.chestController = chestController;
-        
-        public void SetupChestSlots(string chestName, Sprite chestSprite,int timer,string timerText, string gemText)
+
+        public void SetupChestSlots(string chestName, Sprite chestSprite, int timer, string timerText, string gemText)
         {
             SubscribeToEvents();
             chestText.text = chestName;
@@ -106,6 +100,16 @@ namespace ChestSystem.Chest
         }
 
         public void SetUnlockTimer(string time) => timerText.text = time;
+
+        public void OnChestUnlocked(string completedString, Sprite unlockedSprite)
+        {
+            unlockingPanel.SetActive(false);
+            statusText.gameObject.SetActive(true);
+            statusText.text = completedString;
+            chestImage.sprite = unlockedSprite;
+            chestButton.onClick.RemoveAllListeners();
+            chestButton.onClick.AddListener(chestController.OnChestComplete);
+        }
         #endregion ------------------
     }
 }
