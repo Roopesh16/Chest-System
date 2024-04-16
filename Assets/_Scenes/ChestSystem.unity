@@ -1465,6 +1465,11 @@ MonoBehaviour:
   gemText: {fileID: 1914919824}
   coinText: {fileID: 280021600}
   invalidPanel: {fileID: 126561167}
+  emptySlotList:
+  - {fileID: 2054949765}
+  - {fileID: 2872157}
+  - {fileID: 1294103833}
+  - {fileID: 2051238117}
 --- !u!1 &1145853003
 GameObject:
   m_ObjectHideFlags: 0

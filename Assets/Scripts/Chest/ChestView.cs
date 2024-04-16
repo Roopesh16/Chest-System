@@ -11,13 +11,13 @@ namespace ChestSystem.Chest
     {
         #region --------- Serialized Variables ---------
 
-        [FormerlySerializedAs("chestName")] [SerializeField] private TextMeshProUGUI chestText;
+        [FormerlySerializedAs("chestName")][SerializeField] private TextMeshProUGUI chestText;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private TextMeshProUGUI statusText;
         [SerializeField] private GameObject unlockingPanel;
         [SerializeField] private Image chestImage;
         [SerializeField] private Button chestButton;
-        
+
         [Header("Option Panel")]
         [SerializeField] private GameObject optionPanel;
         [SerializeField] private TextMeshProUGUI timerBtnText;
@@ -31,7 +31,7 @@ namespace ChestSystem.Chest
         private ChestController chestController;
         private int timer;
         private const float WaitTime = 1f;
-        
+
         #endregion ------------------
 
         #region --------- Public Variables ---------
@@ -67,20 +67,20 @@ namespace ChestSystem.Chest
 
         private void EnableOptionPanel()
         {
-            if(optionPanel.activeSelf)
+            if (optionPanel.activeSelf)
                 return;
             optionPanel.SetActive(true);
         }
 
         private void DisableOptionPanel() => optionPanel.SetActive(false);
-        
+
         #endregion ------------------
 
         #region --------- Public Methods ---------
-        
+
         public void SetController(ChestController chestController) => this.chestController = chestController;
-        
-        public void SetupChestSlots(string chestName, Sprite chestSprite,int timer,string timerText, string gemText)
+
+        public void SetupChestSlots(string chestName, Sprite chestSprite, int timer, string timerText, string gemText)
         {
             SubscribeToEvents();
             chestText.text = chestName;
