@@ -1,12 +1,15 @@
 using System.ComponentModel;
 using ChestSystem.Chest;
 
-public abstract class IState
+namespace ChestSystem.Chest.States
 {
-    public ChestController Owner;
-    public virtual void OnStateEnter(){}
+    public abstract class IState
+    {
+        public ChestController Owner;
+        public virtual void OnStateEnter() { }
 
-    public virtual void Update(){}
+        public virtual void Update() { }
 
-    public virtual void OnStateExit(){}
+        public virtual void OnStateExit() { }
+    }
 }
