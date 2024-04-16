@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ChestSystem.Input;
 using ChestSystem.Main;
 using ChestSystem.ScriptableObjects;
 using ChestSystem.UI;
@@ -12,14 +13,16 @@ namespace ChestSystem.Chest
         private List<ChestScriptableObject> chestsList = new();
         private List<ChestController> spawnedChests = new();
         private ChestView chestPrefab;
+
+        private UIService UIService => GameService.Instance.UIService;
+        private InputService InputService => GameService.Instance.InputService;
         #endregion ------------------
 
         #region --------- Public Variables ---------
         #endregion ------------------
-        
+
         #region --------- Private Methods ---------
 
-        private UIService UIService => GameService.Instance.UIService;
         #endregion ------------------
 
         #region --------- Public Methods ---------
@@ -37,9 +40,9 @@ namespace ChestSystem.Chest
             spawnedChests.Add(spawnChest);
         }
 
-        public void RemoveChestSlot(int index)
+        public void RemoveChestSlot(ChestController chestController,int index)
         {
-            spawnedChests.Remove(spawnedChests[index]); 
+            spawnedChests.Remove(chestController); 
             UIService.EnableEmptySlot(index);
         }
         #endregion ------------------

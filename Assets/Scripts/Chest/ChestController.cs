@@ -113,8 +113,8 @@ namespace ChestSystem.Chest
             int randGem = Random.Range(chestModel.MinGemCount, chestModel.MaxGemCount);
             int randCoin = Random.Range(chestModel.MinCoinCount, chestModel.MaxCoinCount);
             
+            ChestService.RemoveChestSlot(this,index);
             TransactionService.AddCoinGemCount(randGem,randCoin);
-            ChestService.RemoveChestSlot(index);
             GameObject.Destroy(chestView.gameObject);
             
         }
