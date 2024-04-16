@@ -7,9 +7,9 @@ public class ChestStateMachine : GenericStateMachine<ChestController>
     #region --------- Protected Methods ---------
     protected override void CreateStates()
     {
-        statesDict.Add(ChestStates.LOCKED, new LockedState<ChestController>());
-        statesDict.Add(ChestStates.UNLOCKING, new UnlockingState<ChestController>());
-        statesDict.Add(ChestStates.UNLOCKED, new UnlockedState<ChestController>());
+        statesDict.Add(ChestStates.LOCKED, new LockedState<ChestController>(this));
+        statesDict.Add(ChestStates.UNLOCKING, new UnlockingState<ChestController>(this));
+        statesDict.Add(ChestStates.UNLOCKED, new UnlockedState<ChestController>(this));
 
     }
     #endregion ------------------
