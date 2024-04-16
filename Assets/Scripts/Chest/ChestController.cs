@@ -15,7 +15,8 @@ namespace ChestSystem.Chest
 
         private TransactionService TransactionService => GameService.Instance.TransactionService;
         private UIService UIService => GameService.Instance.UIService;
-        
+        private ChestService ChestService => GameService.Instance.ChestService;
+
         private const int HourSeconds = 3600;
         private int gemCount;
         private int index;
@@ -99,7 +100,10 @@ namespace ChestSystem.Chest
         public void OpenChest()
         {
             if (TransactionService.IsValidTransaction(gemCount))
+            {
                 TransactionService.DeductGems(gemCount);
+                OnChestComplete();
+            }
             else
                 UIService.DisplayInvalidText();
         }
@@ -110,7 +114,8 @@ namespace ChestSystem.Chest
             int randCoin = Random.Range(chestModel.MinCoinCount, chestModel.MaxCoinCount);
             
             TransactionService.AddCoinGemCount(randGem,randCoin);
-            GameObject.Destroy(chestView);
+            ChestService.RemoveChestSlot(index);
+            GameObject.Destroy(chestView.gameObject);
             
         }
         #endregion ------------------
