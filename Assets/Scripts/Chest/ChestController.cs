@@ -70,13 +70,14 @@ namespace ChestSystem.Chest
             this.index = index;
             CreateStateMachine();
             InitializeModel(chestScriptableObject);
-            InitializeView(chestPrefab,parent,siblingIndex);
+            InitializeView(chestPrefab, parent, siblingIndex);
+            stateMachine.ChangeState(ChestStates.LOCKED);
         }
-        
+
         public void ShakeChestSprite()
         {
             Transform imgTransform = chestView.GetChestImage().transform;
-            imgTransform.DOShakePosition(chestModel.ShakeDuration,chestModel.ShakeStrength);
+            imgTransform.DOShakePosition(chestModel.ShakeDuration, chestModel.ShakeStrength);
             imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
         }
 
