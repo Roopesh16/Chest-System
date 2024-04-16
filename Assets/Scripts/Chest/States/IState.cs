@@ -1,6 +1,3 @@
-using System.ComponentModel;
-using ChestSystem.Chest;
-
 namespace ChestSystem.Chest.States
 {
     public abstract class IState
