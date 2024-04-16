@@ -41,12 +41,8 @@ namespace ChestSystem.Utilities
         }
 
         public IState ChangeState(ChestStates newState) => statesDict[newState];
+
+        public void Update() => currentState.Update();
         #endregion ------------------
-
-        
-
-        
-
-        
     }
 }
