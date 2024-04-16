@@ -106,6 +106,16 @@ namespace ChestSystem.Chest
         }
 
         public void SetUnlockTimer(string time) => timerText.text = time;
+
+        public void OnChestUnlocked(string completedString, Sprite unlockedSprite)
+        {
+            unlockingPanel.SetActive(false);
+            statusText.gameObject.SetActive(true);
+            statusText.text = completedString;
+            chestImage.sprite = unlockedSprite;
+            chestButton.onClick.RemoveAllListeners();
+            chestButton.onClick.AddListener(chestController.OnChestComplete);
+        }
         #endregion ------------------
     }
 }
