@@ -1,8 +1,8 @@
 namespace ChestSystem.Chest.States
 {
-    public abstract class IState<T>
+    public abstract class IState
     {
-        public T Owner;
+        public ChestController Owner;
         public virtual void OnStateEnter() { }
 
         public virtual void Update() { }
