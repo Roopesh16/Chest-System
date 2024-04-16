@@ -4,6 +4,7 @@ using UnityEngine;
 using ChestSystem.UI;
 using ChestSystem.Main;
 using ChestSystem.Transaction;
+using ChestSystem.Chest.States;
 using Random = UnityEngine.Random;
 using ChestSystem.ScriptableObjects;
 
@@ -31,6 +32,7 @@ namespace ChestSystem.Chest
 
         #region --------- Public Variables ---------
         public ChestView View => chestView;
+        public ChestModel Model => chestModel;
         #endregion ------------------
 
         #region --------- Private Methods ---------
@@ -48,14 +50,14 @@ namespace ChestSystem.Chest
             chestView = GameObject.Instantiate(chestPrefab, parent);
             chestView.SetController(this);
             chestView.SetupChestSlots(chestModel.ChestName, chestModel.ClosedChestSprite, chestModel.TimerSecs,
-                GetTimerText(chestModel.TimerSecs), GetGemText(chestModel.TimerSecs));
+                GetTimerBtnText(chestModel.TimerSecs), GetGemBtnText(chestModel.TimerSecs));
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
         #endregion ------------------
 
         #region --------- Public Methods ---------
 
-        public ChestController(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex,int index)
+        public ChestController(ChestScriptableObject chestScriptableObject, ChestView chestPrefab, Transform parent, int siblingIndex, int index)
         {
             this.index = index;
             CreateStateMachine();
@@ -71,14 +73,14 @@ namespace ChestSystem.Chest
             imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
         }
 
-        private string GetGemText(int timer)
+        private string GetGemBtnText(int timer)
         {
             TimeSpan ts = TimeSpan.FromSeconds(timer);
             gemCount = Mathf.CeilToInt((ts.Hours * 60 + ts.Minutes) * 0.1f);
             return gemCount.ToString();
         }
 
-        private string GetTimerText(int timer)
+        private string GetTimerBtnText(int timer)
         {
             string text;
             TimeSpan ts = TimeSpan.FromSeconds(timer);
