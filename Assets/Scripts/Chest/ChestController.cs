@@ -42,25 +42,15 @@ namespace ChestSystem.Chest
             chestModel = new ChestModel(chestScriptableObject);
             chestModel.SetController(this);
         }
-        
-        private void InitializeView(ChestView chestPrefab, Transform parent,int siblingIndex)
+
+        private void InitializeView(ChestView chestPrefab, Transform parent, int siblingIndex)
         {
-            chestView = GameObject.Instantiate(chestPrefab,parent);
+            chestView = GameObject.Instantiate(chestPrefab, parent);
             chestView.SetController(this);
-            chestView.SetupChestSlots(chestModel.ChestName,chestModel.ClosedChestSprite,chestModel.TimerSecs,
-                GetTimerText(chestModel.TimerSecs),GetGemText(chestModel.TimerSecs));
+            chestView.SetupChestSlots(chestModel.ChestName, chestModel.ClosedChestSprite, chestModel.TimerSecs,
+                GetTimerText(chestModel.TimerSecs), GetGemText(chestModel.TimerSecs));
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
-
-        public void SetTimerText(int timer)
-        {
-            TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
-            string time = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
-            chestView.SetUnlockTimer(time);
-        }
-        #endregion ------------------
-        
-        #region --------- Protected Methods ---------
         #endregion ------------------
 
         #region --------- Public Methods ---------
@@ -119,12 +109,22 @@ namespace ChestSystem.Chest
         {
             int randGem = Random.Range(chestModel.MinGemCount, chestModel.MaxGemCount);
             int randCoin = Random.Range(chestModel.MinCoinCount, chestModel.MaxCoinCount);
-            
-            ChestService.RemoveChestSlot(this,index);
-            TransactionService.AddCoinGemCount(randGem,randCoin);
+
+            ChestService.RemoveChestSlot(this, index);
+            TransactionService.AddCoinGemCount(randGem, randCoin);
             GameObject.Destroy(chestView.gameObject);
-            
         }
+
+        public void SetTimerText(int timer)
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
+            string time = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            chestView.SetUnlockTimer(time);
+        }
+
+        public void SetUnlockingState() => stateMachine.ChangeState(ChestStates.UNLOCKING);
+
+        public void SetUnlockedState() => stateMachine.ChangeState(ChestStates.UNLOCKED);
         #endregion ------------------
     }
 }
