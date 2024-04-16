@@ -4,6 +4,6 @@ namespace ChestSystem.Chest.States
     {
         LOCKED,
         UNLOCKING,
-        COMPLETED
+        UNLOCKED
     }
 }
