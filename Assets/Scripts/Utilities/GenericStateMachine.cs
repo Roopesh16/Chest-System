@@ -35,10 +35,7 @@ namespace ChestSystem.Utilities
         #endregion ------------------
 
         #region --------- Public Methods ---------
-        public GenericStateMachine(T Owner)
-        {
-            this.Owner = Owner;
-        }
+        public GenericStateMachine(T Owner) => this.Owner = Owner;
 
         public IState ChangeState(ChestStates newState) => statesDict[newState];
 
