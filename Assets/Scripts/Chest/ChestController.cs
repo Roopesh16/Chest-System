@@ -4,8 +4,8 @@ using UnityEngine;
 using ChestSystem.UI;
 using ChestSystem.Main;
 using ChestSystem.Transaction;
-using ChestSystem.ScriptableObjects;
 using Random = UnityEngine.Random;
+using ChestSystem.ScriptableObjects;
 
 namespace ChestSystem.Chest
 {
@@ -20,17 +20,22 @@ namespace ChestSystem.Chest
         private const int HourSeconds = 3600;
         private int gemCount;
         private int index;
+
+        private ChestStateMachine stateMachine;
         #endregion ------------------
-        
+
         #region --------- Protected Variables ---------
         protected ChestView chestView;
         protected ChestModel chestModel;
         #endregion ------------------
 
         #region --------- Public Variables ---------
+        public ChestView View => chestView;
         #endregion ------------------
-        
+
         #region --------- Private Methods ---------
+
+        private void CreateStateMachine() => stateMachine = new ChestStateMachine(this);
 
         private void InitializeModel(ChestScriptableObject chestScriptableObject)
         {
@@ -63,6 +68,7 @@ namespace ChestSystem.Chest
         public ChestController(ChestScriptableObject chestScriptableObject,ChestView chestPrefab,Transform parent,int siblingIndex,int index)
         {
             this.index = index;
+            CreateStateMachine();
             InitializeModel(chestScriptableObject);
             InitializeView(chestPrefab,parent,siblingIndex);
         }
