@@ -69,6 +69,10 @@ namespace ChestSystem.UI
             siblingIndex += 2;
         }
 
+
+        #endregion ------------------
+
+        #region --------- Public Methods ---------
         public void SetGemCoinCount(int gemCount, int coinCount)
         {
             gemText.text = gemCount.ToString();
@@ -77,10 +81,6 @@ namespace ChestSystem.UI
 
         public void DisplayInvalidText() => StartCoroutine(InvalidPanelTimer());
         public void EnableEmptySlot(int index) => emptySlotList[index].SetActive(true);
-
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
 
         #endregion ------------------
 
