@@ -61,14 +61,8 @@ namespace ChestSystem.Chest
                 chestController.SetTimerText(timer);
                 yield return new WaitForSecondsRealtime(WaitTime);
             }
-            
-        }
 
-        private void OnTimerComplete()
-        {
-            chestButton.onClick.RemoveAllListeners();
-            statusText.text = "COMPLETED";
-            chestButton.onClick.AddListener(chestController.OnChestComplete);
+            chestController.SetUnlockedState();
         }
 
         private void EnableOptionPanel()
