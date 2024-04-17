@@ -57,8 +57,8 @@ namespace ChestSystem.UI
         {
             if (!InputService.CanSpawnChest()) return;
             
-            InputService.IncrementOpenChest();
             chestSlots.GetChild(childIndex).gameObject.SetActive(false);
+            InputService.IncrementOpenChest();
             ChestService.SpawnRandomChest(chestSlots,siblingIndex);
             IncrementIndices();
         }
@@ -80,7 +80,20 @@ namespace ChestSystem.UI
         }
 
         public void DisplayInvalidText() => StartCoroutine(InvalidPanelTimer());
-        public void EnableEmptySlot(int index) => emptySlotList[index].SetActive(true);
+        public void EnableEmptySlot(int index) 
+        {
+            emptySlotList[index].SetActive(true);
+            InputService.SetEmptySlot(index);
+
+            if(index!=0 && !emptySlotList[index-1].activeSelf)
+                childIndex = InputService.GetEmptySlot() + 1;
+            else
+                childIndex = InputService.GetEmptySlot();
+
+            siblingIndex = childIndex + 1;
+        } 
+
+        public bool IsSlotAvailable(int index) => emptySlotList[index].activeSelf;
 
         #endregion ------------------
 
