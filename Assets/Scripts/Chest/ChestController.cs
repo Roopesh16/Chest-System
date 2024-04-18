@@ -84,7 +84,7 @@ namespace ChestSystem.Chest
         {
             switch (commandType)
             {
-                case CommandType.GEM : return new GemCommand(gemCount);
+                case CommandType.GEM : return new GemCommand(this,gemCount);
 
                 default:
                     throw new Exception($"Command not found of : {commandType}");
@@ -136,6 +136,13 @@ namespace ChestSystem.Chest
             TimeSpan timeSpan = TimeSpan.FromSeconds(timer);
             string time = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
             chestView.SetUnlockTimer(time);
+        }
+
+        public void SetLockedState()
+        {
+            stateMachine.ChangeState(ChestStates.LOCKED);
+            chestView.SetupChestSlots(chestModel.ChestName, chestModel.ClosedChestSprite, chestModel.TimerSecs,
+                GetTimerBtnText(chestModel.TimerSecs), GetGemBtnText(chestModel.TimerSecs));
         }
 
         public void SetUnlockingState() => stateMachine.ChangeState(ChestStates.UNLOCKING);
