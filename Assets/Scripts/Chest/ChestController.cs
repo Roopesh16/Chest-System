@@ -19,6 +19,7 @@ namespace ChestSystem.Chest
         private TransactionService TransactionService => GameService.Instance.TransactionService;
         private UIService UIService => GameService.Instance.UIService;
         private ChestService ChestService => GameService.Instance.ChestService;
+        private CommandInvoker CommandInvoker => GameService.Instance.CommandInvoker;
 
         private const int HourSeconds = 3600;
         private int gemCount;
@@ -113,7 +114,7 @@ namespace ChestSystem.Chest
         {
             if (TransactionService.IsValidTransaction(gemCount))
             {
-                GameService.Instance.CommandInvoker.ProcessCommand(GetCommand(CommandType.GEM));
+                CommandInvoker.ProcessCommand(GetCommand(CommandType.GEM));
                 SetUnlockedState();
             }
             else
