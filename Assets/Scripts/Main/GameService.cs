@@ -25,6 +25,7 @@ namespace ChestSystem.Main
         public ChestService ChestService { get; private set; }
         public InputService InputService { get; private set; }
         public TransactionService TransactionService { get; private set; }
+        public CommandInvoker CommandInvoker { get; private set; }
         public UIService UIService => uiService;
         #endregion ------------------
 
@@ -35,6 +36,7 @@ namespace ChestSystem.Main
             ChestService = new ChestService(chestsList,chestPrefab);
             InputService = new InputService();
             TransactionService = new TransactionService();
+            CommandInvoker = new CommandInvoker();
         }
         #endregion ------------------
     }

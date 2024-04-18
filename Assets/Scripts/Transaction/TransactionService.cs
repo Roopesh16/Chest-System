@@ -43,7 +43,7 @@ namespace ChestSystem.Transaction
             UIService.SetGemCoinCount(currentGemCount,currentCoinCount);
         }
 
-        public void AddCoinGemCount(int gemCount, int coinCount)
+        public void AddCoinGemCount(int gemCount, int coinCount = 0)
         {
             currentGemCount += gemCount;
             currentCoinCount += coinCount;

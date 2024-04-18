@@ -44,6 +44,10 @@ namespace ChestSystem.Chest
 
         private void SubscribeToEvents()
         {
+            chestButton.onClick.RemoveAllListeners();
+            timerButton.onClick.RemoveAllListeners();
+            gemsButton.onClick.RemoveAllListeners();
+
             chestButton.onClick.AddListener(chestController.ShakeChestSprite);
             chestButton.onClick.AddListener(EnableOptionPanel);
 
