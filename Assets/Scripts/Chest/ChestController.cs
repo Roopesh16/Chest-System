@@ -128,6 +128,7 @@ namespace ChestSystem.Chest
 
             ChestService.RemoveChestSlot(this, index);
             TransactionService.AddCoinGemCount(randGem, randCoin);
+            UIService.SwitchUndoBtn(false);
             GameObject.Destroy(chestView.gameObject);
         }
 
