@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using ChestSystem.Commands.Abstract;
 
 public class CommandInvoker
@@ -9,9 +10,10 @@ public class CommandInvoker
     {
         ExecuteCommand(commandToProcess);
         RegisterCommand(commandToProcess);
+        Debug.Log(commandRegistry.Count);
     }
 
-    public void ExecuteCommand(ICommand command) => command.Execute();
+    private void ExecuteCommand(ICommand command) => command.Execute();
 
-    public void RegisterCommand(ICommand command) => commandRegistry.Push(command);
+    private void RegisterCommand(ICommand command) => commandRegistry.Push(command);
 }
