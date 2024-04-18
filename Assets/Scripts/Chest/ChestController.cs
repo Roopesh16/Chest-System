@@ -76,6 +76,17 @@ namespace ChestSystem.Chest
 
             return text;
         }
+
+        private ChestCommand GetCommand(CommandType commandType)
+        {
+            switch (commandType)
+            {
+                case CommandType.GEM : return new GemCommand(gemCount);
+
+                default:
+                    throw new Exception($"Command not found of : {commandType}");
+            }
+        }
         #endregion ------------------
 
         #region --------- Public Methods ---------
