@@ -7,6 +7,8 @@ using ChestSystem.Transaction;
 using ChestSystem.Chest.States;
 using Random = UnityEngine.Random;
 using ChestSystem.ScriptableObjects;
+using ChestSystem.Commands.Abstract;
+using ChestSystem.Commands.Concrete;
 
 namespace ChestSystem.Chest
 {
@@ -111,7 +113,7 @@ namespace ChestSystem.Chest
         {
             if (TransactionService.IsValidTransaction(gemCount))
             {
-                TransactionService.DeductGems(gemCount);
+                GameService.Instance.CommandInvoker.ProcessCommand(GetCommand(CommandType.GEM));
                 SetUnlockedState();
             }
             else
