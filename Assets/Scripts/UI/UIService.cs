@@ -14,6 +14,7 @@ namespace ChestSystem.UI
         #region --------- Serialized Variables ---------
 
         [SerializeField] private Button generateButton;
+        [SerializeField] private Button undoButton;
         [SerializeField] private Transform chestSlots;
         [SerializeField] private TextMeshProUGUI gemText;
         [SerializeField] private TextMeshProUGUI coinText;
@@ -25,6 +26,7 @@ namespace ChestSystem.UI
 
         private ChestService ChestService => GameService.Instance.ChestService;
         private InputService InputService => GameService.Instance.InputService;
+        private CommandInvoker CommandInvoker => GameService.Instance.CommandInvoker;
 
         private int childIndex = 0;
         private int siblingIndex = 1;
@@ -40,7 +42,14 @@ namespace ChestSystem.UI
         private void Awake()
         {
             generateButton.onClick.AddListener(OnGenerateClick);
+            undoButton.onClick.AddListener(OnUndoClick);
         }
+
+        private void Start() => SwitchUndoBtn(false);
+
+        #endregion ------------------
+
+        #region --------- Private Methods ---------
 
         private IEnumerator InvalidPanelTimer()
         {
@@ -49,18 +58,20 @@ namespace ChestSystem.UI
             invalidPanel.SetActive(false);
         }
 
-        #endregion ------------------
-
-        #region --------- Private Methods ---------
-
         private void OnGenerateClick()
         {
             if (!InputService.CanSpawnChest()) return;
-            
+
             chestSlots.GetChild(childIndex).gameObject.SetActive(false);
             InputService.IncrementOpenChest();
-            ChestService.SpawnRandomChest(chestSlots,siblingIndex);
+            ChestService.SpawnRandomChest(chestSlots, siblingIndex);
             IncrementIndices();
+        }
+
+        private void OnUndoClick()
+        {
+            CommandInvoker.UndoCommand();
+            SwitchUndoBtn(false);
         }
 
         private void IncrementIndices()
@@ -80,20 +91,22 @@ namespace ChestSystem.UI
         }
 
         public void DisplayInvalidText() => StartCoroutine(InvalidPanelTimer());
-        public void EnableEmptySlot(int index) 
+        public void EnableEmptySlot(int index)
         {
             emptySlotList[index].SetActive(true);
             InputService.SetEmptySlot(index);
 
-            if(index!=0 && !emptySlotList[index-1].activeSelf)
+            if (index != 0 && !emptySlotList[index - 1].activeSelf)
                 childIndex = InputService.GetEmptySlot() + 1;
             else
                 childIndex = InputService.GetEmptySlot();
 
             siblingIndex = childIndex + 1;
-        } 
+        }
 
         public bool IsSlotAvailable(int index) => emptySlotList[index].activeSelf;
+
+        public void SwitchUndoBtn(bool isActive) => undoButton.gameObject.SetActive(isActive);
 
         #endregion ------------------
 
