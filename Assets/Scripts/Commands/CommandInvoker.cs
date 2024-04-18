@@ -10,7 +10,14 @@ public class CommandInvoker
     {
         ExecuteCommand(commandToProcess);
         RegisterCommand(commandToProcess);
-        Debug.Log(commandRegistry.Count);
+    }
+
+    public void UndoCommand()
+    {
+        if(commandRegistry.Count!=0)
+        {
+            commandRegistry.Pop().Undo();
+        }
     }
 
     private void ExecuteCommand(ICommand command) => command.Execute();
