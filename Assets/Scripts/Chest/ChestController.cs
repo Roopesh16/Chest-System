@@ -53,25 +53,6 @@ namespace ChestSystem.Chest
                 GetTimerBtnText(chestModel.TimerSecs), GetGemBtnText(chestModel.TimerSecs));
             chestView.transform.SetSiblingIndex(siblingIndex);
         }
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
-
-        public ChestController(ChestScriptableObject chestScriptableObject, ChestView chestPrefab, Transform parent, int siblingIndex, int index)
-        {
-            this.index = index;
-            CreateStateMachine();
-            InitializeModel(chestScriptableObject);
-            InitializeView(chestPrefab, parent, siblingIndex);
-            stateMachine.ChangeState(ChestStates.LOCKED);
-        }
-
-        public void ShakeChestSprite()
-        {
-            Transform imgTransform = chestView.GetChestImage().transform;
-            imgTransform.DOShakePosition(chestModel.ShakeDuration, chestModel.ShakeStrength);
-            imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
-        }
 
         private string GetGemBtnText(int timer)
         {
@@ -94,6 +75,25 @@ namespace ChestSystem.Chest
             }
 
             return text;
+        }
+        #endregion ------------------
+
+        #region --------- Public Methods ---------
+
+        public ChestController(ChestScriptableObject chestScriptableObject, ChestView chestPrefab, Transform parent, int siblingIndex, int index)
+        {
+            this.index = index;
+            CreateStateMachine();
+            InitializeModel(chestScriptableObject);
+            InitializeView(chestPrefab, parent, siblingIndex);
+            stateMachine.ChangeState(ChestStates.LOCKED);
+        }
+
+        public void ShakeChestSprite()
+        {
+            Transform imgTransform = chestView.GetChestImage().transform;
+            imgTransform.DOShakePosition(chestModel.ShakeDuration, chestModel.ShakeStrength);
+            imgTransform.DOShakeScale(chestModel.ShakeDuration, chestModel.ShakeStrength);
         }
 
         public void OpenChestByGems()
