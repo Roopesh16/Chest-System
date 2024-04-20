@@ -9,8 +9,7 @@ namespace ChestSystem.Chest
 {
     public class ChestView : MonoBehaviour
     {
-        #region --------- Serialized Variables ---------
-
+       // Private Variables
         [FormerlySerializedAs("chestName")][SerializeField] private TextMeshProUGUI chestText;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private TextMeshProUGUI statusText;
@@ -24,24 +23,13 @@ namespace ChestSystem.Chest
         [SerializeField] private TextMeshProUGUI gemsBtnText;
         [SerializeField] private Button timerButton;
         [SerializeField] private Button gemsButton;
-        #endregion ------------------
-
-        #region --------- Private Variables ---------
-
+        
         private ChestController chestController;
         private int timer;
         private const float WaitTime = 1f;
 
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
-        #endregion ------------------
-
-        #region --------- Monobehavior Methods ---------
-        #endregion ------------------
-
-        #region --------- Private Methods ---------
-
+        // Private Methods
         private void SubscribeToEvents()
         {
             chestButton.onClick.RemoveAllListeners();
@@ -78,10 +66,7 @@ namespace ChestSystem.Chest
 
         private void DisableOptionPanel() => optionPanel.SetActive(false);
 
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
-
+        // Public Methods
         public void SetController(ChestController chestController) => this.chestController = chestController;
 
         public void SetupChestSlots(string chestName, Sprite chestSprite, int timer, string timerText, string gemText)
@@ -114,6 +99,5 @@ namespace ChestSystem.Chest
             chestButton.onClick.RemoveAllListeners();
             chestButton.onClick.AddListener(chestController.OnChestComplete);
         }
-        #endregion ------------------
     }
 }

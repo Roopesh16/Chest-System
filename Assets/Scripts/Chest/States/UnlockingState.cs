@@ -1,6 +1,6 @@
+using UnityEngine;
 using System.Collections;
 using ChestSystem.Utilities;
-using UnityEngine;
 
 namespace ChestSystem.Chest.States
 {

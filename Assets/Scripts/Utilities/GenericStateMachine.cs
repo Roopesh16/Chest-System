@@ -6,16 +6,15 @@ namespace ChestSystem.Utilities
 {
     public class GenericStateMachine<T> where T : ChestController
     {
-        #region --------- Protected Variables ---------
+       // Protected Variables 
         protected T Owner;
         protected IState currentState;
         protected Dictionary<ChestStates, IState> statesDict = new ();
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
-        #endregion ------------------
+        // Constructor
+        public GenericStateMachine(T Owner) => this.Owner = Owner;
 
-        #region --------- Protected Methods ---------
+        // Protected Methods 
         protected void ChangeState(IState newState)
         {
             currentState?.OnStateExit();
@@ -32,14 +31,10 @@ namespace ChestSystem.Utilities
                 state.Owner = Owner;
             }
         }
-        #endregion ------------------
 
-        #region --------- Public Methods ---------
-        public GenericStateMachine(T Owner) => this.Owner = Owner;
-
+        // Public Methods
         public void ChangeState(ChestStates newState) => ChangeState(statesDict[newState]);
 
         public void Update() => currentState.Update();
-        #endregion ------------------
     }
 }

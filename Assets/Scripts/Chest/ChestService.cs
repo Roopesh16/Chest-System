@@ -9,29 +9,24 @@ namespace ChestSystem.Chest
 {
     public class ChestService
     {
-        #region --------- Private Variables ---------
+       // Private Variables
         private List<ChestScriptableObject> chestsList = new();
         private List<ChestController> spawnedChests = new();
         private ChestView chestPrefab;
 
         private UIService UIService => GameService.Instance.UIService;
         private InputService InputService => GameService.Instance.InputService;
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
-        #endregion ------------------
 
-        #region --------- Private Methods ---------
-
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
+        // Constructor
 
         public ChestService(List<ChestScriptableObject> chestsList,ChestView chestPrefab)
         {
             this.chestsList = chestsList;
             this.chestPrefab = chestPrefab;
         }
+
+        // Public Methods
 
         public void SpawnRandomChest(Transform parent,int siblingIndex)
         {
@@ -45,6 +40,5 @@ namespace ChestSystem.Chest
             spawnedChests.Remove(chestController); 
             UIService.EnableEmptySlot(index);
         }
-        #endregion ------------------
     }
 }

@@ -14,7 +14,7 @@ namespace ChestSystem.Chest
 {
     public class ChestController
     {
-        #region --------- Private Variables ---------
+        // Private Variables 
 
         private TransactionService TransactionService => GameService.Instance.TransactionService;
         private UIService UIService => GameService.Instance.UIService;
@@ -26,19 +26,26 @@ namespace ChestSystem.Chest
         private int index;
 
         private ChestStateMachine stateMachine;
-        #endregion ------------------
 
-        #region --------- Protected Variables ---------
+        // Protected Variables
         protected ChestView chestView;
         protected ChestModel chestModel;
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
+        // Public Variables
         public ChestView View => chestView;
         public ChestModel Model => chestModel;
-        #endregion ------------------
 
-        #region --------- Private Methods ---------
+        // Constructor
+        public ChestController(ChestScriptableObject chestScriptableObject, ChestView chestPrefab, Transform parent, int siblingIndex, int index)
+        {
+            this.index = index;
+            CreateStateMachine();
+            InitializeModel(chestScriptableObject);
+            InitializeView(chestPrefab, parent, siblingIndex);
+            stateMachine.ChangeState(ChestStates.LOCKED);
+        }
+
+        //  Private Methods
 
         private void CreateStateMachine() => stateMachine = new ChestStateMachine(this);
 
@@ -90,18 +97,8 @@ namespace ChestSystem.Chest
                     throw new Exception($"Command not found of : {commandType}");
             }
         }
-        #endregion ------------------
 
-        #region --------- Public Methods ---------
-
-        public ChestController(ChestScriptableObject chestScriptableObject, ChestView chestPrefab, Transform parent, int siblingIndex, int index)
-        {
-            this.index = index;
-            CreateStateMachine();
-            InitializeModel(chestScriptableObject);
-            InitializeView(chestPrefab, parent, siblingIndex);
-            stateMachine.ChangeState(ChestStates.LOCKED);
-        }
+        //  Public Methods
 
         public void ShakeChestSprite()
         {
@@ -149,6 +146,5 @@ namespace ChestSystem.Chest
         public void SetUnlockingState() => stateMachine.ChangeState(ChestStates.UNLOCKING);
 
         public void SetUnlockedState() => stateMachine.ChangeState(ChestStates.UNLOCKED);
-        #endregion ------------------
     }
 }

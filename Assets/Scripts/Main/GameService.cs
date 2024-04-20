@@ -11,7 +11,7 @@ namespace ChestSystem.Main
 {
     public class GameService : GenericMonoSingleton<GameService>
     {
-        #region --------- Serialized Variables ---------
+        //  Private Variables
         [Header("UI Reference")]
         [SerializeField] private UIService uiService;
 
@@ -19,17 +19,14 @@ namespace ChestSystem.Main
         [SerializeField] private ChestView chestPrefab;
         [SerializeField] private List<ChestScriptableObject> chestsList = new();
         
-        #endregion ------------------
-        
-        #region --------- Public Variables ---------
+        // Public Variables 
         public ChestService ChestService { get; private set; }
         public InputService InputService { get; private set; }
         public TransactionService TransactionService { get; private set; }
         public CommandInvoker CommandInvoker { get; private set; }
         public UIService UIService => uiService;
-        #endregion ------------------
 
-        #region --------- Monobehavior Methods ---------
+        //  Monobehavior Methods
         protected override void Awake()
         {
             base.Awake();
@@ -38,6 +35,5 @@ namespace ChestSystem.Main
             TransactionService = new TransactionService();
             CommandInvoker = new CommandInvoker();
         }
-        #endregion ------------------
     }
 }

@@ -6,22 +6,13 @@ namespace ChestSystem.Transaction
 {
     public class TransactionService
     {
-       #region --------- Private Variables ---------
+        // Private Variables
        private int currentGemCount;
        private int currentCoinCount;
 
        private UIService UIService => GameService.Instance.UIService;
-       #endregion ------------------
 
-        #region --------- Public Variables ---------
-        #endregion ------------------
-
-        #region --------- Private Methods ---------
-        
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
-
+        // Constructor
         public TransactionService()
         {
             currentGemCount = 0;
@@ -29,6 +20,7 @@ namespace ChestSystem.Transaction
             UIService.SetGemCoinCount(currentGemCount,currentCoinCount);
         }
 
+        // Public Methods
         public bool IsValidTransaction(int chestGem) => chestGem <= currentGemCount;
 
         public void DeductGems(int gemCount)
@@ -49,8 +41,5 @@ namespace ChestSystem.Transaction
             currentCoinCount += coinCount;
             UIService.SetGemCoinCount(currentGemCount,currentCoinCount);
         }
-        #endregion ------------------
-
-
     }
 }

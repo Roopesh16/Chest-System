@@ -5,12 +5,10 @@ namespace ChestSystem.Chest
 {
     public class ChestModel
     {
-        #region --------- Private Variables ---------
-
+        // Private Variables
         private ChestController chestController;
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
+        // Public Variables
         public ChestTypes ChestTypes { get; private set; }
         public string ChestName { get; private set; }
         public int MinCoinCount { get; private set; }
@@ -22,12 +20,8 @@ namespace ChestSystem.Chest
         public float ShakeDuration { get; private set; }
         public float ShakeStrength { get; private set; }
         public int TimerSecs { get; private set; }
-        #endregion ------------------
-        
-        #region --------- Private Methods ---------
-        #endregion ------------------
 
-        #region --------- Public Methods ---------
+        // Public Methods
 
         public ChestModel(ChestScriptableObject chestScriptableObject)
         {
@@ -45,7 +39,5 @@ namespace ChestSystem.Chest
         }
 
         public void SetController(ChestController chestController) => this.chestController = chestController;
-
-        #endregion ------------------
     }
 }
