@@ -4,18 +4,16 @@ namespace ChestSystem.Utilities
 {
     public class GenericMonoSingleton<T> : MonoBehaviour where T : GenericMonoSingleton<T>
     {
-        #region --------- Private Variables ---------
+        // Private Variables
         private static T instance = null;
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
+        //  Public Variables
         public static T Instance
         {
             get { return instance; }
         }
-        #endregion ------------------
 
-        #region --------- Monobehavior Methods ---------
+        // Monobehavior Methods
         protected virtual void Awake()
         {
             if (instance == null)
@@ -25,8 +23,6 @@ namespace ChestSystem.Utilities
                 Destroy(this);
             }
         }
-
-        #endregion ------------------
     }    
 }
 

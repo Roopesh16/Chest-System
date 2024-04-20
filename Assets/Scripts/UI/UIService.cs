@@ -11,8 +11,7 @@ namespace ChestSystem.UI
 {
     public class UIService : MonoBehaviour
     {
-        #region --------- Serialized Variables ---------
-
+        // Private Variables
         [SerializeField] private Button generateButton;
         [SerializeField] private Button undoButton;
         [SerializeField] private Transform chestSlots;
@@ -20,9 +19,6 @@ namespace ChestSystem.UI
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private GameObject invalidPanel;
         [SerializeField] private List<GameObject> emptySlotList = new();
-        #endregion ------------------
-
-        #region --------- Private Variables ---------
 
         private ChestService ChestService => GameService.Instance.ChestService;
         private InputService InputService => GameService.Instance.InputService;
@@ -31,13 +27,7 @@ namespace ChestSystem.UI
         private int childIndex = 0;
         private int siblingIndex = 1;
 
-        #endregion ------------------
-
-        #region --------- Public Variables ---------
-
-        #endregion ------------------
-
-        #region --------- Monobehavior Methods ---------
+        // Monobehavior Methods
 
         private void Awake()
         {
@@ -47,10 +37,7 @@ namespace ChestSystem.UI
 
         private void Start() => SwitchUndoBtn(false);
 
-        #endregion ------------------
-
-        #region --------- Private Methods ---------
-
+        // Private Methods
         private IEnumerator InvalidPanelTimer()
         {
             invalidPanel.SetActive(true);
@@ -80,10 +67,7 @@ namespace ChestSystem.UI
             siblingIndex += 2;
         }
 
-
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
+        //  Public Methods
         public void SetGemCoinCount(int gemCount, int coinCount)
         {
             gemText.text = gemCount.ToString();
@@ -107,8 +91,5 @@ namespace ChestSystem.UI
         public bool IsSlotAvailable(int index) => emptySlotList[index].activeSelf;
 
         public void SwitchUndoBtn(bool isActive) => undoButton.gameObject.SetActive(isActive);
-
-        #endregion ------------------
-
     }
 }

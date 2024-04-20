@@ -4,7 +4,15 @@ using ChestSystem.Chest.States;
 
 public class ChestStateMachine : GenericStateMachine<ChestController>
 {
-    #region --------- Protected Methods ---------
+    // Constructor
+    public ChestStateMachine(ChestController Owner) : base(Owner)
+    {
+        this.Owner = Owner;
+        CreateStates();
+        SetOwner();
+    }
+    
+    //  Protected Methods 
     protected override void CreateStates()
     {
         statesDict.Add(ChestStates.LOCKED, new LockedState<ChestController>(this));
@@ -12,14 +20,5 @@ public class ChestStateMachine : GenericStateMachine<ChestController>
         statesDict.Add(ChestStates.UNLOCKED, new UnlockedState<ChestController>(this));
 
     }
-    #endregion ------------------
 
-    #region --------- Public Methods ---------
-    public ChestStateMachine(ChestController Owner) : base(Owner)
-    {
-        this.Owner = Owner;
-        CreateStates();
-        SetOwner();
-    }
-    #endregion ------------------
 }

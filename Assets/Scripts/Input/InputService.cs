@@ -8,25 +8,17 @@ namespace ChestSystem.Input
 {
     public class InputService
     {
-        #region --------- Private Variables ---------
-
+        // Public Variable
         public int TotalSlots { get; private set; } = 4;
+        
+        // Private Variables 
         private int currentOpenSlots = 0;
         private int currentEmptySlot = 0;
 
         private UIService UIService => GameService.Instance.UIService;
 
-        #endregion ------------------
 
-        #region --------- Public Variables ---------
-
-        #endregion ------------------
-
-        #region --------- Private Methods ---------
-
-        #endregion ------------------
-
-        #region --------- Public Methods ---------
+        // Public Methods
 
         public bool CanSpawnChest() => currentOpenSlots < TotalSlots;
 
@@ -51,7 +43,6 @@ namespace ChestSystem.Input
         }
 
         public int GetEmptySlot() => currentEmptySlot;
-        #endregion ------------------
     }
 }
 
