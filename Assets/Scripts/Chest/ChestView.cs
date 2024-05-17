@@ -51,7 +51,8 @@ namespace ChestSystem.Chest
             while (--timer >= 0)
             {
                 chestController.SetTimerText(timer);
-                yield return new WaitForSecondsRealtime(WaitTime);
+                yield return null;
+                //yield return new WaitForSecondsRealtime(WaitTime);
             }
 
             chestController.SetUnlockedState();
